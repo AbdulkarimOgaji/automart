@@ -1,0 +1,10 @@
+// bootstrap overrides go here
+
+$body-bg: #eeeeee;
+
+
+// bootstrap go here
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// bootstrap icons go here
+@import '~bootstrap-icons/font/bootstrap-icons.scss';
