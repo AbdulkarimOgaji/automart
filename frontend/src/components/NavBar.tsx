@@ -2,7 +2,7 @@ const NavBar = () => {
   return (
       <>
       <header className="navBar">
-      <h1 className="logo">LOGO</h1>
+      <img src="/images/logo.png" className="logo" alt="logo"/>
       <input
         type="checkbox"
         name="nav-toggler"
