@@ -1,0 +1,26 @@
+.btn-links {
+    background-color: $secondary;
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+    padding: 0.5rem 2rem;
+    border-radius: 50px;
+}
+
+.btn-links:hover {
+    color: white;
+    background-color: darken($color: $secondary, $amount: 10);
+}
+
+.btn-links:active {
+    background-color: darken($color: $secondary, $amount: 20);
+}
+
+.jombotron-img {
+    background-image: url('../../public/images/bg.jpg');
+    background-blend-mode: multiply;
+    background-color: $primary;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
