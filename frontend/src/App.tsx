@@ -1,6 +1,8 @@
 import NavBar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
-import { Routes, Route } from 'react-router-dom'
+import AutoMobileList from "./pages/AutoMobileList"
+import { Routes, Route } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -8,6 +10,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route index element={<HomePage />}/>
+        <Route path="list" element={<AutoMobileList />}/>
       </Routes>
     </div>
   );

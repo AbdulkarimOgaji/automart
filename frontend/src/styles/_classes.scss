@@ -17,8 +17,20 @@
 .jombotron-img {
     background-image: url('../../public/images/bg.jpg');
     background-blend-mode: multiply;
-    background-color: lighten($color: $primary, $amount: 40);
+    background-color: lighten($color: $primary, $amount: 60);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+}
+
+.myCard {
+    width: 350px;
+    background-color: hwb(0 94% 6%);
+    color: black;
+}
+
+.cardImage {
+    width: 100%;
+    object-fit: cover;
+    height: 200px
 }

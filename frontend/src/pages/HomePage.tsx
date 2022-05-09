@@ -1,7 +1,7 @@
 const HomePage = () => {
   return (
-    <div className="row container-fluid m-0 p-0 border">
-      <div className="col-md-6 col-12 bg-primary p-5 ">
+    <div className="row container-fluid m-0 p-0">
+      <div className="col-md-6 col-12 bg-primary p-5 vh-100 ">
         <h1 className="display-3 fw-bolder p-lg-5 p-md-2 text-white">
           An online Space For Selling AutoMobiles.
         </h1>
