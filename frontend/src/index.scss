@@ -1,10 +1,16 @@
 // bootstrap overrides go here
+@import './styles/variables';
+@import './styles/global';
+@import './styles/classes';
 
-$body-bg: #eeeeee;
 
+
+
+@import './styles/navBar';
 
 // bootstrap go here
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // bootstrap icons go here
 @import '~bootstrap-icons/font/bootstrap-icons.scss';
+

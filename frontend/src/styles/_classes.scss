@@ -1,0 +1,36 @@
+.btn-links {
+    background-color: $secondary;
+    text-decoration: none;
+    color: white;
+    
+}
+
+.btn-links:hover {
+    color: white;
+    background-color: darken($color: $secondary, $amount: 10);
+}
+
+.btn-links:active {
+    background-color: darken($color: $secondary, $amount: 20);
+}
+
+.jombotron-img {
+    background-image: url('../../public/images/bg.jpg');
+    background-blend-mode: multiply;
+    background-color: lighten($color: $primary, $amount: 60);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.myCard {
+    width: 350px;
+    background-color: hwb(0 94% 6%);
+    color: black;
+}
+
+.cardImage {
+    width: 100%;
+    object-fit: cover;
+    height: 200px
+}

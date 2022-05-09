@@ -1,0 +1,129 @@
+header.navBar {
+    position: absolute;
+    z-index: 999;
+    text-align: center;
+    width: 100%;
+    background: $light;
+    .ssa {
+      margin-top: 200px;
+    }
+    nav {
+      background: inherit;
+      width: 100%;
+      position: absolute;
+      text-align: start;
+      top: 100%;
+      left: 0;
+      transform: scale(1, 0);
+      transform-origin: top;
+      transition: transform 400ms ease-in-out;
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          margin-bottom: 1rem;
+          margin-left: 1rem;
+        }
+      }
+      a {
+        text-decoration: none;
+        color: black;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: opacity 250ms ease;
+      }
+      a:hover {
+        color: #000;
+      }
+    }
+    .nav-toggler {
+      display: none;
+    }
+    .nav-toggler:checked ~ nav {
+      transform: scale(1, 1);
+      a {
+        opacity: 1;
+        transition: opacity 250ms ease 250ms;
+      }
+    }
+    .nav-toggler-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+      span,
+      span::before,
+      span::after {
+        display: block;
+        height: 3px;
+        background: white;
+        border-radius: 3px;
+        position: relative;
+        width: 1.5rem;
+      }
+      span::before,
+      span::after {
+        position: absolute;
+        content: "";
+      }
+      span:before {
+        top: -7px;
+      }
+      span:after {
+        bottom: -7px;
+      }
+    }
+  }
+  
+  @media screen and (min-width: 800px) {
+    header.navBar {
+      display: grid;
+      grid-template-columns: 1fr auto minmax(600px, 1fr) 1fr;
+      .nav-toggler-label {
+        display: none;
+      }
+      .logo {
+        grid-column: 2 / span 1;
+        height: 60px;
+      }
+      nav {
+        all: unset;
+        grid-column: 3 / span 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        a {
+          opacity: 1;
+          position: relative;
+        }
+        a::before {
+          content: "";
+          height: 5px;
+          top: -0.6rem;
+          position: absolute;
+          left: 0;
+          right: 0;
+          background-color: black;
+          border-radius: 3px;
+          transform: scale(0, 0);
+          transition: transform 400ms ease;
+        }
+        a:hover::before {
+          transform: scale(1);
+        }
+        ul {
+          display: flex;
+          justify-content: flex-end;
+          li {
+            margin-bottom: 0;
+            margin-left: 3rem;
+          }
+        }
+      }
+    }
+  }
