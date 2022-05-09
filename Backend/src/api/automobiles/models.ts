@@ -5,6 +5,8 @@ export interface IAutoMobile {
     type: "CAR" | "MOTORCYCLE" | "TRUCK";
     model: string;
     imageUrl: string;
+    price: number;
+
 }
 
 const automobileSchema = new Schema<IAutoMobile>(
@@ -25,7 +27,11 @@ const automobileSchema = new Schema<IAutoMobile>(
     imageUrl: {
         type: String,
         required: true
-    }
+    },
+    price: {
+      type: Number,
+      required: true
+  }
   },
   { timestamps: true }
 );
