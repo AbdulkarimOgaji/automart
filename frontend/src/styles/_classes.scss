@@ -23,14 +23,32 @@
     background-position: center center;
 }
 
+.my-linear-grad {
+ background-image: linear-gradient(to bottom right, $primary, $secondary);
+}
+.my-linear-grad2 {
+ background-image: linear-gradient(to bottom right, $secondary, $primary);
+}
 .myCard {
     width: 350px;
     background-color: hwb(0 94% 6%);
     color: black;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0)
+    
 }
+
 
 .cardImage {
     width: 100%;
     object-fit: cover;
     height: 200px
+}
+@media screen and (max-width: 768px){
+        .cardImage {
+            height: 150px;
+        }
+}
+
+.detail-img {
+    min-width: min(70%, 500px)
 }
