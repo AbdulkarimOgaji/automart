@@ -93,6 +93,7 @@ const getUserById = (req: Request, res: Response) => {
 };
 
 const updateUser = (req: Request, res: Response) => {
+  // @ts-ignore
   User.updateOne({ _id: req.userId }, req.body)
     .then((result) =>
       res.json({
@@ -111,6 +112,7 @@ const updateUser = (req: Request, res: Response) => {
 };
 
 const deleteUser = (req: Request, res: Response) => {
+  // @ts-ignore
   User.deleteOne({ _id: req.userId })
     .then((result) => {
       if (result.deletedCount == 0) {
