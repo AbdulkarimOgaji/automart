@@ -4,16 +4,20 @@ import { Error } from "mongoose";
 import { MongoError } from "mongodb";
 import bcrypt from "bcrypt";
 
+import { generateToken } from "../middleware/auth";
+
 const createUser = async(req: Request, res: Response) => {
   const newUser = new User(req.body);
   newUser.passwordHash = await bcrypt.hash(req.body.password, 10)
   newUser
     .save()
     .then((result) => {
+      const token = generateToken(result.id)
       res.status(201).json({
         status: "success",
         message: "user created successfuly",
         data: result,
+        token,
         error: null,
       });
     })
@@ -89,7 +93,7 @@ const getUserById = (req: Request, res: Response) => {
 };
 
 const updateUser = (req: Request, res: Response) => {
-  User.updateOne({ _id: req.params.id }, req.body)
+  User.updateOne({ _id: req.userId }, req.body)
     .then((result) =>
       res.json({
         success: true,
@@ -107,7 +111,7 @@ const updateUser = (req: Request, res: Response) => {
 };
 
 const deleteUser = (req: Request, res: Response) => {
-  User.deleteOne({ _id: req.params.id })
+  User.deleteOne({ _id: req.userId })
     .then((result) => {
       if (result.deletedCount == 0) {
         res.status(404).json({

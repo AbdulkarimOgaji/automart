@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
 import { AutoMobile } from "./models";
+import multer from 'multer';
+
+
 
 const getAllAutoMobiles = (req: Request, res: Response) => {
   const { pageId, pageSize } = req.params;
@@ -25,8 +28,9 @@ const getAllAutoMobiles = (req: Request, res: Response) => {
 };
 
 const createAutoMobile = (req: Request, res: Response) => {
+  
   const automobile = new AutoMobile(req.body);
-  automobile.sellerId = "123";
+  automobile.sellerId = req.userId;
   automobile
     .save()
     .then((result) => {
@@ -72,14 +76,14 @@ const updateAutoMobile = () => {};
 
 const deleteAutoMobile = (req: Request, res: Response) => {
   const id = req.params.id;
-  AutoMobile.deleteOne({ _id: id })
+  AutoMobile.deleteOne({ _id: id, sellerId: req.userId })
     .then((result) => {
       if (result.deletedCount == 0) {
-        res.status(404).json({
+        res.status(401).json({
           status: "Failure",
-          message: "Automobile does not exist",
+          message: "UnAuthorized to delete",
           data: result,
-          error: "Automobile does not exist in the database",
+          error: "Unauthorized to delete this resource",
         });
       } else {
         res.json({
@@ -100,11 +104,40 @@ const deleteAutoMobile = (req: Request, res: Response) => {
     });
 };
 
+const multerConfig = multer.diskStorage({
+  destination: (req, file, callback) =>{
+    callback(null, 'static/images/automobiles')
+  },
+  filename: (req, file, callback) => {
+    console.log("destination: ", file)
+
+    const name = req.imageName || 'default'
+    const ext = file.mimetype.split('/')[1]
+    callback(null, name + "." + ext)
+  }
+})
+
+
+const upload = multer({
+storage: multerConfig,
+fileFilter: (req, file, callback) => {
+
+  if (file.mimetype.startsWith('image')) {
+    callback(null, true)
+  }else {
+    callback(new Error("Only image is Allowed"))
+  }
+}  
+})
+const uploadImage = upload.single('photo')
+
+
 const controllers = {
   getAllAutoMobiles,
   getAutoMobileById,
   createAutoMobile,
   deleteAutoMobile,
+  uploadImage,
 };
 
 export default controllers;
