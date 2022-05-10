@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 
 
-const SingleAutoMobile = () => {
+const SingleAutoMobile = ({ canAlter }: { canAlter: boolean}) => {
   return (
     <div className="rounded-3 myCard m-md-4 m-2 border">
       <img src="images/car3.jpg" className="cardImage" alt="" />
       <h3 className="text-center my-md-3 my-2">#2,000,000</h3>
       <div className="m-md-4 m-2 d-flex justify-content-between align-items-center">
         <p className="fw-bold">Model: Buggatti Veron</p>
-        <Link to="/detail" className="btn-links rounded-pill py-md-2 py-1 px-md-4 px-3 ">
+        <Link to="/detail/2" className="btn-links rounded-pill py-md-2 py-1 px-md-4 px-3 ">
           View
         </Link>
       </div>
