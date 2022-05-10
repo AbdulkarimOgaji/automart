@@ -26,11 +26,13 @@ const userSchema = new Schema<IUser>(
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     phoneNum: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     passwordHash: {
         type: String,
@@ -41,4 +43,4 @@ const userSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
-export const User = model<IUser>("Automobile", userSchema)
+export const User = model<IUser>("User", userSchema)

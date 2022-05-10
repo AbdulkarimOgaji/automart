@@ -11,28 +11,33 @@ const createUser = async(req: Request, res: Response) => {
     .save()
     .then((result) => {
       res.status(201).json({
-        success: true,
+        status: "success",
         message: "user created successfuly",
-        payload: result,
+        data: result,
+        error: null,
       });
     })
     .catch((err) => {
       if (err instanceof Error.ValidationError) {
         res.status(400).json({
-          success: false,
+          status: "Failure",
           message: err.message,
           error: err.errors,
+          data: null,
         });
       } else if ((err as MongoError).code === 11000) {
         res.status(400).json({
-          success: false,
+          status: "Failure",
           message: "email or phone number belongs to another user",
           error: err,
+          data: null
         });
       } else {
         res.status(500).json({
-          success: false,
+          status: "Failure",
           error: err,
+          message: "Internal Server Error",
+          data: null,
         });
       }
     });
@@ -56,7 +61,7 @@ const getUsers = (req: Request, res: Response) => {
     );
 };
 
-const getUsersById = (req: Request, res: Response) => {
+const getUserById = (req: Request, res: Response) => {
   User.findById(req.params.id)
     .then((result) =>
       res.json({
@@ -103,12 +108,25 @@ const updateUser = (req: Request, res: Response) => {
 
 const deleteUser = (req: Request, res: Response) => {
   User.deleteOne({ _id: req.params.id })
-    .then((result) =>
-      res.status(204).json({
-        success: true,
-        message: "User deleted successfully",
-        payload: result,
-      })
+    .then((result) => {
+      if (result.deletedCount == 0) {
+        res.status(404).json({
+          status: "failure",
+          message: "User does not exist",
+          payload: result,
+          error: "User does not exist"
+        })
+      }else {
+        res.status(200).json({
+          status: "success",
+          message: "User deleted successfully",
+          payload: result,
+          error: null,
+        })
+      }
+      
+    }
+      
     )
     .catch((err) =>
       res.json({
@@ -118,12 +136,13 @@ const deleteUser = (req: Request, res: Response) => {
       })
     );
 };
-const userHandlers = {
+
+const controllers = {
   createUser,
   updateUser,
   deleteUser,
   getUsers,
-  getUsersById,
+  getUserById,
 };
 
-export default userHandlers;
+export default controllers;
