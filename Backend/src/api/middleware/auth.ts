@@ -2,10 +2,11 @@ import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { User } from "../users/models";
 import bcrypt from "bcrypt";
+import secretsConfig from "../../../secrets.config";
 
 
 export const generateToken = (userId: string) => {
-  return jwt.sign(null, "", {
+  return jwt.sign(null, secretsConfig.dbConnectionUri, {
     subject: userId,
   });
 };
@@ -55,7 +56,7 @@ const authorizeClient = (req: Request, res: Response, next: NextFunction) => {
       data: null,
     });
   }
-  jwt.verify(token, "SECRETkEY", (err, payload) => {
+  jwt.verify(token, secretsConfig.accessTokenSecret, (err, payload) => {
     if (err)
       return res.status(403).json({
         status: "Failure",
