@@ -6,9 +6,10 @@ import secretsConfig from "../../../secrets.config";
 
 
 export const generateToken = (userId: string) => {
-  return jwt.sign(null, secretsConfig.dbConnectionUri, {
-    subject: userId,
-  });
+  const token = jwt.sign({
+    sub: userId
+  }, secretsConfig.accessTokenSecret);
+  return token
 };
 
 const loginHandler = async (req: Request, res: Response) => {
@@ -26,6 +27,7 @@ const loginHandler = async (req: Request, res: Response) => {
           data: null
         });
       }
+  // @ts-ignore
       const token = generateToken(result.id);
       res.json({
         status: "success",
@@ -57,15 +59,18 @@ const authorizeClient = (req: Request, res: Response, next: NextFunction) => {
     });
   }
   jwt.verify(token, secretsConfig.accessTokenSecret, (err, payload) => {
-    if (err)
+    if (err) {
       return res.status(403).json({
         status: "Failure",
         message: "Invalid token",
         error: err,
         data: null,
       });
-      req.userId = (payload as JwtPayload).sub
-    next();
+    }else {
+  // @ts-ignore
+  req.userId = (payload as JwtPayload).sub
+  next();
+    }  
   });
 };
 

@@ -30,6 +30,7 @@ const getAllAutoMobiles = (req: Request, res: Response) => {
 const createAutoMobile = (req: Request, res: Response) => {
   
   const automobile = new AutoMobile(req.body);
+  // @ts-ignore
   automobile.sellerId = req.userId;
   automobile
     .save()
@@ -75,7 +76,8 @@ const getAutoMobileById = (req: Request, res: Response) => {
 const updateAutoMobile = () => {};
 
 const deleteAutoMobile = (req: Request, res: Response) => {
-  const id = req.params.id;
+  const id = req.query.id
+  // @ts-ignore
   AutoMobile.deleteOne({ _id: id, sellerId: req.userId })
     .then((result) => {
       if (result.deletedCount == 0) {
@@ -110,7 +112,7 @@ const multerConfig = multer.diskStorage({
   },
   filename: (req, file, callback) => {
     console.log("destination: ", file)
-
+    // @ts-ignore
     const name = req.imageName || 'default'
     const ext = file.mimetype.split('/')[1]
     callback(null, name + "." + ext)
