@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
 
+export interface Automobile {
+  type: 'CAR' | 'MOTORCYCLE' | 'TRUCK';
+  model: string;
+  price: string;
+  sellerId: string;
+  imageUrl?: string;
+}
 
 const SingleAutoMobile = ({ canAlter }: { canAlter: boolean}) => {
   return (

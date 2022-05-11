@@ -1,19 +1,33 @@
-import SingleAutoMobile from "../components/SingleAutoMobile";
+import { useState, useEffect } from "react";
+import SingleAutoMobile, { Automobile } from "../components/SingleAutoMobile";
 
+interface Response {
+  status: string,
+  data: Automobile[]
+}
+
+const fetchData = async() => {
+  const resp = await fetch('http://localhost:8000/automobile/all?pageId=1&pageSize=10')
+  const respData: Response = await resp.json()
+  if (respData.status == 'success') {
+    return respData.data
+  }
+  return null
+}
 const AutoMobileList = () => {
+  const [automobiles, setAutomobiles] = useState<null|Automobile[]>(null)
+
+  useEffect(() => {
+    fetchData().then(result => setAutomobiles(result))
+  })
+
   return (
     <div className="navbar-height my-linear-grad border">
       <h1 className="ms-md-5 p-md-5 m-2 p-2">Total 4,762,021 vehicles</h1>
       <div className="d-flex container-fluid justify-content-around flex-wrap my-0 mx-auto">
-        <SingleAutoMobile canAlter={false}/>
-        <SingleAutoMobile canAlter={false} />
-        <SingleAutoMobile canAlter={false} />
-        <SingleAutoMobile canAlter={false} />
-        <SingleAutoMobile canAlter={false} />
-        <SingleAutoMobile canAlter={false} />
-        <SingleAutoMobile canAlter={false} />
-        <SingleAutoMobile canAlter={false} />
-        
+        {
+          automobiles && automobiles.map(d => <SingleAutoMobile canAlter/>)
+        }
       </div>
     </div>
   );

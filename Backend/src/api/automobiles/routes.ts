@@ -8,7 +8,7 @@ import auth from "../middleware/auth";
 
 const router = Router()
 
-router.get('/automobile/all',auth.authorizeClient, controllers.getAllAutoMobiles)
+router.get('/automobile/all', controllers.getAllAutoMobiles)
 router.post('/automobile',auth.authorizeClient, createSchema, validateRequest, controllers.uploadImage, controllers.createAutoMobile)
 router.delete('/automobile',auth.authorizeClient, controllers.deleteAutoMobile)
 router.get('/automobile/:id',auth.authorizeClient, controllers.getAutoMobileById)
