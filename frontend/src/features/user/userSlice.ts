@@ -41,9 +41,10 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    registerRequest: (state, action: PayloadAction<UserState["data"]>) => {
+    loginRequest: (state, action: PayloadAction<{data:UserState["data"], token:string}>) => {
         state.isLoggedIn = true
-        state.data = action.payload
+        state.data = action.payload.data
+        state.accessToken = action.payload.token
     },
     toggleFav: (state, action: PayloadAction<Automobile>) => {
         if (state.favourites.has(action.payload)) {
@@ -63,7 +64,7 @@ const userSlice = createSlice({
   },
 });
 
-const { registerRequest } = userSlice.actions
-export {registerRequest}
+const { loginRequest } = userSlice.actions
+export {loginRequest}
 
 export default userSlice.reducer;

@@ -32,7 +32,8 @@ const loginHandler = async (req: Request, res: Response) => {
       res.json({
         status: "success",
         message: "login successful, token generated successfully",
-        data: token,
+        data: result,
+        token,
         error: null
       });
     })

@@ -1,21 +1,16 @@
 import { Automobile } from "../components/SingleAutoMobile";
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react";
-import { UserState } from "../features/user/userSlice";
 
 
 interface ResponseType {
   status: string;
   data: Automobile
 }
-interface userResponseType {
-  status: string;
-  data: UserState['data']
-}
+
 const Detail = () => {
   const navigate = useNavigate()
   const [automobile, setAutomobile] = useState<null|Automobile>(null)
-  const [userData, setUserData] = useState<null|UserState["data"]>(null)
   
   const { automobile_id } = useParams()
 
@@ -27,11 +22,6 @@ const Detail = () => {
     const respData: ResponseType = await resp.json()
     if (respData.status === 'success') {
       setAutomobile(respData.data)
-    }
-    const res = await fetch(`http://localhost:8000/user/${automobile?.sellerId}`)
-    const data: userResponseType = await res.json()
-    if (data.status === 'success') {
-      setUserData(data.data)
     }
   }
 
@@ -54,14 +44,12 @@ const Detail = () => {
       <div className="m-5 ps-5">
         <h5>Price: {automobile?.price}</h5>
         <h5>Currency: Naira</h5>
-        <h5>Seller Number: {userData?.phoneNum}</h5>
-        <h5>Seller Email: {userData?.email}</h5>
       </div>
       </div>
       
       <div className="text-center ">
         <button className="btn-links px-4 py-2 rounded-pill mb-5 border-0" onClick={viewProfile}>
-          View Profile
+          Contact Seller 
         </button>
       </div>
     </div>
