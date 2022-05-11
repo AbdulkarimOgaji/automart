@@ -28,9 +28,7 @@ const Profile = () => {
             }
         }
     }
-    useEffect(() => {
-        fetchData()
-    })
+    fetchData().then(r => console.log("Fetched"))
   return (
     <div className="navbar-height bg-white text-black">
       <div className="d-flex  px-5 mb-5">
@@ -51,7 +49,7 @@ const Profile = () => {
           <h5>Phone Number: {userData?.phoneNum}</h5>
         </div>
       </div>
-      <h1 className="text-center mb-5">My Assets</h1>
+      <h1 className="text-center mb-5">{userData?.firstName}'s Assets</h1>
       <div className="d-flex container-fluid justify-content-around flex-wrap my-0 mx-auto">
           {
               automobiles && automobiles.map(d => <SingleAutoMobile data={d} key={d._id} />)

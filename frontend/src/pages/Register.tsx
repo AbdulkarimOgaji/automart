@@ -1,5 +1,14 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikValues } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../app/hooks";
+import { loginRequest, UserState } from "../features/user/userSlice";
+
+interface ResponseType {
+  status: string;
+  data: UserState['data'];
+  token: string;
+}
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required("This field is required"),
@@ -20,7 +29,35 @@ const initialValues = {
 };
 
 const Register = () => {
-  const handleSubmit = () => {};
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const handleSubmit = async(values: FormikValues) => {
+    const body = {
+      email: values.email,
+      password: values.password,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      phoneNum: values.phoneNum,
+    }
+    const resp = await fetch('http://localhost:8000/user/create', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(body)
+    })
+    const respData: ResponseType = await resp.json()
+    if (respData.status === 'success') {
+      dispatch(loginRequest({data: respData.data, token: respData.token}))
+      alert('sign up successful')
+      navigate('/dashboard')
+
+    }else {
+      alert('sign up Failed')
+      navigate('/')
+    }
+    
+  };
 
   return (
     <div className=" navbar-height d-flex align-items-center justify-content-center min-vh-100">

@@ -60,11 +60,14 @@ const userSlice = createSlice({
         }else {
             state.cart.add(action.payload)
         }
+    },
+    logout: (state) => {
+      state = initialState
     }
   },
 });
 
-const { loginRequest } = userSlice.actions
-export {loginRequest}
+const { loginRequest, logout } = userSlice.actions
+export {loginRequest, logout}
 
 export default userSlice.reducer;

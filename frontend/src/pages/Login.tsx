@@ -41,6 +41,7 @@ const Login = () => {
     const respData: ResponseType = await resp.json()
     if (respData.status === 'success') {
       dispatch(loginRequest({data: respData.data, token: respData.token}))
+      alert('login successful')
       navigate('/dashboard')
 
     }else {
@@ -98,7 +99,7 @@ const Login = () => {
             </button>
           </div>
           <div className="text-center">
-            <Link to='register' className="text-blue">
+            <Link to='/register' className="text-blue">
               Register Instead?
             </Link>
           </div>
