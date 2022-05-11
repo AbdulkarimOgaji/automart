@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { logout } from "../features/user/userSlice";
 
@@ -27,16 +27,16 @@ const NavBar = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <NavLink to="/">About</NavLink>
+              <Link to="/list">Buy</Link>
             </li>
             <li>
-              <NavLink to="/">Blog</NavLink>
+              <a href="https://github.com/AbdulkarimOgaji/automart" target="_blank" rel="noreferrer" >Source Code</a>
             </li>
             <li>
-              <NavLink to="/dashboard">Dashboard</NavLink>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             {isLoggedIn && (
               <li>

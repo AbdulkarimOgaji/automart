@@ -1,9 +1,10 @@
-import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, ErrorMessage, Field, FormikValues } from "formik";
 import { UserState } from "../features/user/userSlice";
 import { useAppSelector } from "../app/hooks";
 import { useNavigate } from "react-router-dom";
+
+
 
 const validationSchema = Yup.object({
   type: Yup.string()
@@ -45,10 +46,10 @@ const CreateAsset = () => {
     if (respData.status === "success") {
       alert("created successfully");
       navigate("/dashboard");
-    } else if (respData.status === 'unauthorized') {
-      alert('you have to login first')
-      navigate('/login')
-    }else {
+    } else if (respData.status === "unauthorized") {
+      alert("you have to login first");
+      navigate("/login");
+    } else {
       alert("create Failed");
       navigate("/dashboard");
     }

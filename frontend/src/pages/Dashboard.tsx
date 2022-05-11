@@ -37,7 +37,7 @@ const DashBoard = () => {
     <div className="navbar-height bg-white text-black">
       <div className="d-flex  px-5 mb-5">
         <img
-          src="/images/mainpic.jpg"
+          src="/images/default.png"
           style={{
             width: 150,
             height: 150,

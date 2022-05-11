@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SingleAutoMobile, { Automobile } from "../components/SingleAutoMobile";
 
-export interface ResponseType {
+interface ResponseType {
   status: string,
   data: Automobile[]
 }

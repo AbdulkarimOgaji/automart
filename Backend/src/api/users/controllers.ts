@@ -24,21 +24,21 @@ const createUser = async(req: Request, res: Response) => {
     .catch((err) => {
       if (err instanceof Error.ValidationError) {
         res.status(400).json({
-          status: "Failure",
+          status: "failure",
           message: err.message,
           error: err.errors,
           data: null,
         });
       } else if ((err as MongoError).code === 11000) {
         res.status(400).json({
-          status: "Failure",
+          status: "failure",
           message: "email or phone number belongs to another user",
           error: err,
           data: null
         });
       } else {
         res.status(500).json({
-          status: "Failure",
+          status: "failure",
           error: err,
           message: "Internal Server Error",
           data: null,
@@ -51,16 +51,18 @@ const getUsers = (req: Request, res: Response) => {
   User.find()
     .then((result) =>
       res.json({
-        success: true,
+        status: "success",
         message: "Users fetched successfully",
-        payload: result,
+        data: result,
+        error: null,
       })
     )
     .catch((err) =>
       res.status(500).json({
-        success: false,
+        status: "failure",
         message: "error in fetching users",
         error: err,
+        data: null,
       })
     );
 };
@@ -100,16 +102,18 @@ const updateUser = (req: Request, res: Response) => {
   User.updateOne({ _id: req.userId }, req.body)
     .then((result) =>
       res.json({
-        success: true,
+        status: "success",
         message: "User updated successfully",
-        payload: result,
+        data: result,
+        error: null,
       })
     )
     .catch((err) =>
       res.json({
-        success: false,
+        status: "failure",
         message: "Failed to update user",
         error: err,
+        data: null,
       })
     );
 };
