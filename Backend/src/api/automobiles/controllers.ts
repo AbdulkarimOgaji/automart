@@ -103,14 +103,14 @@ const deleteAutoMobile = (req: Request, res: Response) => {
     .then((result) => {
       if (result.deletedCount == 0) {
         res.status(401).json({
-          status: "Failure",
+          status: "failure",
           message: "UnAuthorized to delete",
           data: result,
           error: "Unauthorized to delete this resource",
         });
       } else {
         res.json({
-          status: "Success",
+          status: "success",
           message: "Automobile deleted successfully",
           data: result,
           error: null,
@@ -119,7 +119,7 @@ const deleteAutoMobile = (req: Request, res: Response) => {
     })
     .catch((err) => {
       res.status(500).json({
-        status: "Failure",
+        status: "failure",
         message: "Failed to delete automobile",
         error: err,
         data: null,
