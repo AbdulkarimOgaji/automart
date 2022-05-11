@@ -1,8 +1,7 @@
 import { Automobile } from "../components/SingleAutoMobile";
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react";
 import { UserState } from "../features/user/userSlice";
-
 
 
 interface ResponseType {
@@ -14,10 +13,15 @@ interface userResponseType {
   data: UserState['data']
 }
 const Detail = () => {
+  const navigate = useNavigate()
   const [automobile, setAutomobile] = useState<null|Automobile>(null)
   const [userData, setUserData] = useState<null|UserState["data"]>(null)
-
+  
   const { automobile_id } = useParams()
+
+  const viewProfile = () => {
+    navigate('/profile/' + automobile?.sellerId)
+  }
   const fetchData = async() => {
     const resp = await fetch(`http://localhost:8000/automobile/${automobile_id}`)
     const respData: ResponseType = await resp.json()
@@ -56,7 +60,7 @@ const Detail = () => {
       </div>
       
       <div className="text-center ">
-        <button className="btn-links px-4 py-2 rounded-pill mb-5 border-0">
+        <button className="btn-links px-4 py-2 rounded-pill mb-5 border-0" onClick={viewProfile}>
           View Profile
         </button>
       </div>
