@@ -11,7 +11,7 @@ const HomePage = () => {
           <Link to="list" className="btn-links fs-3 rounded-pill py-2 px-4">
             Start Buying
           </Link>
-          <Link to="/account" className="btn-links fs-3 rounded-pill py-2 px-4">
+          <Link to="/dashboard" className="btn-links fs-3 rounded-pill py-2 px-4">
             Start Selling
           </Link>
         </p>
