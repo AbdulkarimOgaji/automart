@@ -48,7 +48,7 @@ const createUser = async(req: Request, res: Response) => {
 };
 
 const getUsers = (req: Request, res: Response) => {
-  User.find()
+  User.find({}, "firstName lastName displayPic email phoneNum")
     .then((result) =>
       res.json({
         status: "success",
@@ -68,7 +68,7 @@ const getUsers = (req: Request, res: Response) => {
 };
 
 const getUserById = (req: Request, res: Response) => {
-  User.findById(req.params.id)
+  User.findById(req.params.id, "firstName lastName displayPic email phoneNum")
     .then((result) =>
       res.json({
         status: "success",
