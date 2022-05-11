@@ -1,7 +1,7 @@
 import SingleAutoMobile, { Automobile } from "../components/SingleAutoMobile";
 import { useParams } from "react-router-dom";
 import { UserState } from "../features/user/userSlice";
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 interface userResponseType {
     status: string;
@@ -33,7 +33,7 @@ const Profile = () => {
     <div className="navbar-height bg-white text-black">
       <div className="d-flex  px-5 mb-5">
         <img
-          src="/images/mainpic.jpg"
+          src="/images/default.png"
           style={{
             width: 150,
             height: 150,

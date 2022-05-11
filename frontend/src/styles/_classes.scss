@@ -4,7 +4,9 @@
     color: white;
     
 }
-
+.navbar-height {
+    padding-top: 100px;
+}
 .btn-links:hover {
     color: white;
     background-color: darken($color: $secondary, $amount: 10);
@@ -50,5 +52,7 @@
 }
 
 .detail-img {
-    min-width: min(70%, 500px)
+    min-width: min(70%, 500px);
+    max-height: 300px;
+    object-fit: cover;
 }

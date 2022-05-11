@@ -12,10 +12,21 @@ export interface Automobile {
 interface ResponseType { 
   status: string;
 }
+export const imgUrl = (type: 'CAR' | 'MOTORCYCLE' | 'TRUCK' | undefined) => {
+  switch (type) {
+    case 'CAR':
+      return '/images/car2.jpg'
+    case 'MOTORCYCLE':
+      return '/images/motor1.jpg'
+    default:
+      return '/images/truck.jpg'
+  }
+}
 
 const SingleAutoMobile = ({ data }: { data: Automobile }) => {
   const userId = useAppSelector((state) => state.user.data._id);
   const token = useAppSelector((state) => state.user.accessToken);
+  
   const deleteAsset = async() => {
     const resp = await fetch('http://localhost:8000/automobile?id=' + data._id, {
       method: 'DELETE',
@@ -38,7 +49,7 @@ const SingleAutoMobile = ({ data }: { data: Automobile }) => {
 
   return (
     <div className="rounded-3 myCard m-md-4 m-2 border">
-      <img src="/images/car3.jpg" className="cardImage" alt="single" />
+      <img src={imgUrl(data.type)} className="cardImage" alt="single" />
       <h3 className="text-center my-md-3 my-2"># {data.price}</h3>
       <div className="m-md-4 m-2 d-flex justify-content-between align-items-center">
         <p className="fw-bold">Model: {data.model}</p>

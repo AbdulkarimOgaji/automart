@@ -1,4 +1,4 @@
-import { Automobile } from "../components/SingleAutoMobile";
+import { Automobile, imgUrl } from "../components/SingleAutoMobile";
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react";
 
@@ -35,7 +35,7 @@ const Detail = () => {
       <h1 className="text-center">{automobile?.model}</h1>
       <div className="text-center my-5">
         <img
-          src="/images/car2.jpg"
+          src={imgUrl(automobile?.type)}
           className="detail-img border rounded-3"
           alt="automobile"
         />

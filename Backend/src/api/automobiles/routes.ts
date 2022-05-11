@@ -13,6 +13,5 @@ router.get('/automobile/user', auth.authorizeClient, controllers.getUserAutomobi
 router.post('/automobile',auth.authorizeClient, createSchema, validateRequest, controllers.createAutoMobile)
 router.delete('/automobile',auth.authorizeClient, controllers.deleteAutoMobile)
 router.get('/automobile/:id', controllers.getAutoMobileById)
-router.post('/automobile/uploadImage',auth.authorizeClient, controllers.uploadImage)
 
 export { router as automobileRouter}

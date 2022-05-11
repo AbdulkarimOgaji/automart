@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { AutoMobile } from "./models";
-import multer from 'multer';
 
 
 
@@ -94,8 +93,6 @@ const getAutoMobileById = (req: Request, res: Response) => {
     );
 };
 
-const updateAutoMobile = () => {};
-
 const deleteAutoMobile = (req: Request, res: Response) => {
   const id = req.query.id
   // @ts-ignore
@@ -127,32 +124,6 @@ const deleteAutoMobile = (req: Request, res: Response) => {
     });
 };
 
-const multerConfig = multer.diskStorage({
-  destination: (req, file, callback) =>{
-    callback(null, 'static/images/automobiles')
-  },
-  filename: (req, file, callback) => {
-    console.log("destination: ", file)
-    // @ts-ignore
-    const name = req.imageName || 'default'
-    const ext = file.mimetype.split('/')[1]
-    callback(null, name + "." + ext)
-  }
-})
-
-
-const upload = multer({
-storage: multerConfig,
-fileFilter: (req, file, callback) => {
-
-  if (file.mimetype.startsWith('image')) {
-    callback(null, true)
-  }else {
-    callback(new Error("Only image is Allowed"))
-  }
-}  
-})
-const uploadImage = upload.single('photo')
 
 
 const controllers = {
@@ -161,7 +132,6 @@ const controllers = {
   getAutoMobileById,
   createAutoMobile,
   deleteAutoMobile,
-  uploadImage,
 };
 
 export default controllers;

@@ -21,7 +21,7 @@ const loginHandler = async (req: Request, res: Response) => {
       );
       if (!ok) {
         return res.status(401).json({
-          status: "Failure",
+          status: "failure",
           message: "password provided is incorrect",
           error: "Incorrect Password",
           data: null
@@ -39,7 +39,7 @@ const loginHandler = async (req: Request, res: Response) => {
     })
     .catch((err) => {
       return res.status(404).json({
-        status: "Failure",
+        status: "failure",
         message: "User does not exist",
         error: err,
         data: null,
