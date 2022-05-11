@@ -53,7 +53,7 @@ const authorizeClient = (req: Request, res: Response, next: NextFunction) => {
   const token = authHeader?.split(" ")[1];
   if (token == null || token === "") {
     return res.status(401).json({
-      status: "Failure",
+      status: "unauthorized",
       message: "No token provided in Authorization Header",
       error: "No token",
       data: null,
@@ -62,7 +62,7 @@ const authorizeClient = (req: Request, res: Response, next: NextFunction) => {
   jwt.verify(token, secretsConfig.accessTokenSecret, (err, payload) => {
     if (err) {
       return res.status(403).json({
-        status: "Failure",
+        status: "unauthorized",
         message: "Invalid token",
         error: err,
         data: null,
