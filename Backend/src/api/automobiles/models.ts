@@ -26,7 +26,7 @@ const automobileSchema = new Schema<IAutoMobile>(
     },
     imageUrl: {
         type: String,
-        required: true
+        required: false
     },
     price: {
       type: Number,

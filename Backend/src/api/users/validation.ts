@@ -10,5 +10,9 @@ const createUserSchema = [
     body('password').isLength({min: 6}).exists({checkFalsy: true, checkNull: true})
 ]
 
-export { createUserSchema as createSchema}
+const loginSchema = [
+    body('email').exists({checkFalsy: true, checkNull: true}).isEmail(),
+    body('password').isLength({min: 6}).exists({checkFalsy: true, checkNull: true})
+]
+export { createUserSchema as createSchema, loginSchema}
 
