@@ -7,7 +7,7 @@ import DashBoard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import CreateAsset from "./pages/CreateAsset";
-
+import Profile from "./pages/Profile";
 function App() {
   return (
     <div className="App">
@@ -17,7 +17,7 @@ function App() {
         <Route path="list" element={<AutoMobileList />}/>
         <Route path="detail/:automobile_id" element={<Detail />}/>
         <Route path="dashboard" element={<DashBoard />} />
-        <Route path="accounts/:id" element={<DashBoard />} />
+        <Route path="profile/:id" element={<Profile />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="create" element={<CreateAsset />} />

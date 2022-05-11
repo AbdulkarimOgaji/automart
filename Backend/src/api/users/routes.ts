@@ -7,7 +7,7 @@ import auth from "../middleware/auth";
 
 const router = Router()
 
-router.get('/user/:id',auth.authorizeClient, controllers.getUserById )
+router.get('/user/:id', controllers.getUserById )
 router.post('/user/create', createSchema, validateRequest, controllers.createUser)
 router.patch('/user',auth.authorizeClient, createSchema, validateRequest, controllers.updateUser)
 router.delete('/user',auth.authorizeClient, controllers.deleteUser)

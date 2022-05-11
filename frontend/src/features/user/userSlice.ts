@@ -1,17 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Automobile } from "../../components/SingleAutoMobile";
 
 
 
-interface Automobile {
-    type: 'CAR' | 'MOTORCYCLE' | 'TRUCK';
-    model: string;
-    price: string;
-    sellerId: string;
-    imageUrl?: string;
-}
 export interface UserState {
   loginError: string;
+  accessToken: string;
+  isLoggedIn: boolean;
   data: {
+    _id: string;
     email: string;
     firstName: string;
     lastName: string;
@@ -21,13 +18,14 @@ export interface UserState {
   };
   favourites: Set<Automobile>,
   cart: Set<Automobile>,
-  isLoggedIn: boolean;
 }
 
 const initialState = {
   loginError: "",
   isLoggedIn: false,
+  accessToken: "",
   data: {
+    _id: "",
     email: "",
     firstName: "",
     lastName: "",
@@ -55,7 +53,7 @@ const userSlice = createSlice({
         }
         
     },
-    addToCart: (state, action: PayloadAction<Automobile>) => {
+    toggleCart: (state, action: PayloadAction<Automobile>) => {
         if (state.cart.has(action.payload)) {
             state.cart.delete(action.payload)
         }else {
