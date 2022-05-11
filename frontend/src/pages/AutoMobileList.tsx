@@ -23,7 +23,7 @@ const AutoMobileList = () => {
 
   return (
     <div className="navbar-height my-linear-grad border">
-      <h1 className="ms-md-5 p-md-5 m-2 p-2">Total 4,762,021 vehicles</h1>
+      <h1 className="ms-md-5 p-md-5 m-2 p-2">Total {automobiles?.length} vehicles</h1>
       <div className="d-flex container-fluid justify-content-around flex-wrap my-0 mx-auto">
         {
           automobiles && automobiles.map((d) => <SingleAutoMobile data={d} key={d._id}/>)
