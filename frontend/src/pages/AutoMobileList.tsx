@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import SingleAutoMobile, { Automobile } from "../components/SingleAutoMobile";
 
-interface Response {
+export interface ResponseType {
   status: string,
   data: Automobile[]
 }
 
 const fetchData = async() => {
   const resp = await fetch('http://localhost:8000/automobile/all?pageId=1&pageSize=10')
-  const respData: Response = await resp.json()
-  if (respData.status == 'success') {
+  const respData: ResponseType = await resp.json()
+  if (respData.status === 'success') {
     return respData.data
   }
   return null
@@ -26,7 +26,7 @@ const AutoMobileList = () => {
       <h1 className="ms-md-5 p-md-5 m-2 p-2">Total 4,762,021 vehicles</h1>
       <div className="d-flex container-fluid justify-content-around flex-wrap my-0 mx-auto">
         {
-          automobiles && automobiles.map(d => <SingleAutoMobile canAlter/>)
+          automobiles && automobiles.map((d) => <SingleAutoMobile data={d} key={d._id}/>)
         }
       </div>
     </div>

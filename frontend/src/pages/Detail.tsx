@@ -1,10 +1,44 @@
+import { Automobile } from "../components/SingleAutoMobile";
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { UserState } from "../features/user/userSlice";
 
 
+
+interface ResponseType {
+  status: string;
+  data: Automobile
+}
+interface userResponseType {
+  status: string;
+  data: UserState['data']
+}
 const Detail = () => {
+  const [automobile, setAutomobile] = useState<null|Automobile>(null)
+  const [userData, setUserData] = useState<null|UserState["data"]>(null)
+
+  const { automobile_id } = useParams()
+  const fetchData = async() => {
+    const resp = await fetch(`http://localhost:8000/automobile/${automobile_id}`)
+    const respData: ResponseType = await resp.json()
+    if (respData.status === 'success') {
+      setAutomobile(respData.data)
+    }
+    const res = await fetch(`http://localhost:8000/user/${automobile?.sellerId}`)
+    const data: userResponseType = await res.json()
+    if (data.status === 'success') {
+      setUserData(data.data)
+    }
+  }
+
+  useEffect(() => {
+    fetchData().then(r => console.log(r))
+    })
+    
   
   return (
     <div className="navbar-height my-linear-grad2">
-      <h1 className="text-center">Nissan Verron</h1>
+      <h1 className="text-center">{automobile?.model}</h1>
       <div className="text-center my-5">
         <img
           src="/images/car2.jpg"
@@ -14,10 +48,10 @@ const Detail = () => {
       </div>
       <div className="container">
       <div className="m-5 ps-5">
-        <h5>Price: 5.6M</h5>
+        <h5>Price: {automobile?.price}</h5>
         <h5>Currency: Naira</h5>
-        <h5>Seller Number: 08166629550</h5>
-        <h5>Seller Email: abdulkarimogaji002@gmail.com</h5>
+        <h5>Seller Number: {userData?.phoneNum}</h5>
+        <h5>Seller Email: {userData?.email}</h5>
       </div>
       </div>
       

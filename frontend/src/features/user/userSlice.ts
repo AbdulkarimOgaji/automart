@@ -7,8 +7,8 @@ export interface UserState {
   loginError: string;
   accessToken: string;
   isLoggedIn: boolean;
-  userId: string;
   data: {
+    _id: string;
     email: string;
     firstName: string;
     lastName: string;
@@ -25,6 +25,7 @@ const initialState = {
   isLoggedIn: false,
   accessToken: "",
   data: {
+    _id: "",
     email: "",
     firstName: "",
     lastName: "",

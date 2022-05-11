@@ -27,6 +27,27 @@ const getAllAutoMobiles = (req: Request, res: Response) => {
     );
 };
 
+const getUserAutomobiles = (req: Request, res: Response) => {
+ // @ts-ignore
+  AutoMobile.find({sellerId: req.userId})
+    .then((result) =>
+      res.json({
+        status: "success",
+        message: "Automobiles fetched successfully",
+        data: result,
+        error: null,
+      })
+    )
+    .catch((err) =>
+      res.status(500).json({
+        status: "Failure",
+        message: "error in fetching automobiles",
+        error: err,
+        data: null,
+      })
+    );
+};
+
 const createAutoMobile = (req: Request, res: Response) => {
   
   const automobile = new AutoMobile(req.body);
@@ -136,6 +157,7 @@ const uploadImage = upload.single('photo')
 
 const controllers = {
   getAllAutoMobiles,
+  getUserAutomobiles,
   getAutoMobileById,
   createAutoMobile,
   deleteAutoMobile,

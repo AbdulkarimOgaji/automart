@@ -31,9 +31,9 @@ const DashBoard = () => {
       </div>
       <h1 className="text-center mb-5">My Assets</h1>
       <div className="d-flex container-fluid justify-content-around flex-wrap my-0 mx-auto">
-          <SingleAutoMobile canAlter />
-          <SingleAutoMobile canAlter />
-          <SingleAutoMobile canAlter />
+          {/* <SingleAutoMobile  />
+          <SingleAutoMobile  />
+          <SingleAutoMobile  /> */}
       </div>
     </div>
   );
