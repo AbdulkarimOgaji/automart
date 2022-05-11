@@ -26,8 +26,8 @@ const Detail = () => {
   }
 
   useEffect(() => {
-    fetchData().then(r => console.log(r))
-    })
+    fetchData()
+  })
     
   
   return (

@@ -69,24 +69,27 @@ const getUserById = (req: Request, res: Response) => {
   User.findById(req.params.id)
     .then((result) =>
       res.json({
-        success: true,
+        status: "success",
         message: "User fetched successfully",
-        payload: result,
+        data: result,
+        error: null
       })
     )
     .catch((err) => {
         console.log(err)
       if (err instanceof Error.CastError) {
         res.status(400).json({
-          success: false,
+          status: "failure",
           messsage: err.message,
           error: err,
+          data: null
         });
       } else {
         res.status(500).json({
-          success: false,
+          status: "failure",
           message: "error in fetching user",
           error: err,
+          data: null
         });
       }
     });

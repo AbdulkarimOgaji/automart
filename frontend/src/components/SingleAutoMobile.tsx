@@ -12,7 +12,7 @@ export interface Automobile {
 const SingleAutoMobile = ({ data }: { data: Automobile}) => {
   return (
     <div className="rounded-3 myCard m-md-4 m-2 border">
-      <img src="images/car3.jpg" className="cardImage" alt="" />
+      <img src="/images/car3.jpg" className="cardImage" alt="single" />
       <h3 className="text-center my-md-3 my-2"># {data.price}</h3>
       <div className="m-md-4 m-2 d-flex justify-content-between align-items-center">
         <p className="fw-bold">Model: {data.model}</p>

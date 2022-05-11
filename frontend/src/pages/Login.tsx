@@ -41,6 +41,7 @@ const Login = () => {
     const respData: ResponseType = await resp.json()
     if (respData.status === 'success') {
       dispatch(loginRequest({data: respData.data, token: respData.token}))
+      alert('login successful')
       navigate('/dashboard')
 
     }else {
