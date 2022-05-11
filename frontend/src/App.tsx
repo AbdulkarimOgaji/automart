@@ -6,6 +6,7 @@ import Detail from "./pages/Detail";
 import DashBoard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import CreateAsset from "./pages/CreateAsset";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="accounts/:id" element={<DashBoard />} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
+        <Route path="create" element={<CreateAsset />} />
       </Routes>
     </div>
   );
